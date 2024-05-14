@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% extends 'SNS_project/layout.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'security/profile_edit.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8"> <!-- 幅を広げたい場合はここの数値を調整 -->
+            <div class="card">
+                <div class="card-header">
+                    プロフィール更新
+                </div>
+                <div class="card-body d-flex justify-content-center">
+                    <form method="post" enctype="multipart/form-data" class="w-100">
+                        {% csrf_token %}
+                        <div class="form-group mb-3"> <!-- 項目間のスペースを増やす -->
+                            <label for="id_first_name">ユーザーネーム</label>
+                            {{ form.first_name }}
+                        </div>
+                        <div class="form-group mb-3"> <!-- 項目間のスペースを増やす -->
+                            <label for="id_avatar">プロフィール画像</label>
+                            {{ form.avatar }}
+                        </div>
+                        <button type="submit" class="btn btn-primary mx-auto d-block">プロフィール更新</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

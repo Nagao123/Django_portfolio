@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'SNS_project/header.css' %}">
+    {% block css %}{% endblock %}
+    <title>{% block titile %}{% endblock %}</title>
+</head>
+
+<body>
+    <header class="bg-primary fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'sns:index' %}">SNSアプリ</a>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'sns:goods_view' %}">Good</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'sns:my_account' %}">マイアカウント</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'security:logout' %}">ログアウト</a>
+                        </li>
+                    </ul>
+                    <div class="ms-auto">
+                        <a class="nav-link" href="{% url 'security:profile_edit' %}">
+                            {% if login_user.avatar %}
+                            <img src="{{ login_user.avatar.url }}" alt="Profile" style="width: 50px; height: 50px;"
+                                class="rounded-circle">
+                            {% else %}
+                            <img src="../../../media/avatars/avatar-not-set.png" alt="Default"
+                                style="width: 50px; height: 50px;" class="rounded-circle">
+                            {% endif %}
+                            :{{ login_user.first_name }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main class="container">
+        <div class="content1">{% block content %}{% endblock %}</div>
+        <div class="fixed-bottom bg-white container">
+            {% block form %}{% endblock form %}
+        </div>
+    </main>
+    <footer>
+        <a href="{% url 'sns:tweet' %}"><img src="../../media/pictures/plus.png" alt="plus_buttom"
+                class="fixed-image"></a>
+    </footer>
+</body>
+
+</html>

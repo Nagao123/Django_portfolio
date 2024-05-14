@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+{% extends 'SNS_project/layout.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'sns/index.css' %}">
+<link rel="stylesheet" href="{% static 'sns/comment_form.css' %}">
+{% endblock css %}
+
+{% block title %}
+Comment
+{% endblock title %}
+
+{% block content %}
+<table class="votion">
+    <tr style="border: 2px solid black;">
+        <td class="px-4 py-2">
+            <div class="d-flex justify-content-between">
+                <div>
+                    {% if m.owner.avatar %}
+                    <img src="{{ m.owner.avatar.url }}" alt="{{ m.owner.first_name }}"
+                        style="width: 50px; height: 50px;" class="rounded-circle">
+                    {% else %}
+                    <img src="../../../media/avatars/avatar-not-set.png" alt="画像未設定" style="width: 50px; height: 50px;"
+                        class="rounded-circle">
+                    {% endif %}
+                    <span>{{m.owner.first_name}}</span>
+                </div>
+                <span>{{m.pub_date|date:"Y/m/d"}}</span>
+            </div>
+            <p class="pt-3 content_position">
+                {{m.content|linebreaksbr}}
+            </p>
+            <div class="container">
+                {% if m.photo %}
+                <img src="{{m.photo.url}}" alt="投稿画像エラー" class="photo">
+                {% endif %}
+            </div>
+            <div class="d-flex justify-content-end my-2 left">
+                <div>
+                    <span><a href="{% url 'sns:good' m.id %}"><button>Good</button></a></span>
+                    <span class="">{{m.good_count}}</span>
+                </div>
+            </div>
+        </td>
+    </tr>
+    {% for m in comments %}
+    <tr>
+        <td class="px-4 py-2">
+            <div class="d-flex justify-content-between">
+                <div>
+                    {% if m.owner.avatar %}
+                    <img src="{{ m.owner.avatar.url }}" alt="{{ m.owner.first_name }}"
+                        style="width: 50px; height: 50px;" class="rounded-circle">
+                    {% else %}
+                    <img src="../../../media/avatars/avatar-not-set.png" alt="画像未設定" style="width: 50px; height: 50px;"
+                        class="rounded-circle">
+                    {% endif %}
+                    <span>{{m.owner.first_name}}</span>
+                </div>
+                <span>{{m.pub_date|date:"Y/m/d"}}</span>
+            </div>
+            <!-- 文章 -->
+            <p class="pt-3 content_position">
+                {{m.content|linebreaksbr}}
+            </p>
+            <div class="container">
+                {% if m.photo %}
+                <img src="{{m.photo.url}}" alt="投稿画像エラー" class="photo">
+                {% endif %}
+            </div>
+            <div class="d-flex justify-content-end my-2 left">
+                <div>
+                    <span><a href="{% url 'sns:comment_good' m.id %}"><button>Good</button></a></span>
+                    <span class="">{{m.good_count}}</span>
+                </div>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<!-- 幅を作る -->
+<div class="h-10"></div>
+{% endblock content %}
+
+
+{% block form %}
+    <form method="post" class="form-row w-50 d-flex justify-content-between">
+        {% csrf_token %}
+        <div class="w-80">
+            {{form.as_p}}
+        </div>
+        <button type="submit" class="btn btn-primary w-15">投稿</button>
+    </form>
+{% endblock %}

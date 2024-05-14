@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+{% extends 'SNS_project/layout.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'sns/tweet.css' %}">
+{% endblock css %}
+
+{% block title %}
+投稿画面
+{% endblock title %}
+
+{% block content %}
+<p>{{error}}</p>
+<form method="post" class="pt-5" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="preformatted-text">
+        {{form.as_p}}
+    </div>
+    <button type="submit">投稿</button>
+</form>
+{% endblock content %}

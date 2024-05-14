@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+.backbl{
+    background-color:rgb(9, 136, 247);
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.content1{
+    margin-top: 66px;
+    width: 50%;
+}
+
+.fixed-image{
+    position: fixed;
+    right: 10%;
+    bottom: 10%;
+    width: 7%;
+    height: auto;
+}
+
+body{
+    font-family: 'Roboto',sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* カスタムスタイリング、必要に応じて追加してください */
+.nav-link {
+    margin-right: 15px; /* ナビゲーションリンクの右のマージン */
+}
+
+.navbar-brand, .nav-link {
+    color: #000000 !important; /* ナビゲーションのテキスト色を白に設定 */
+}
+
+/* ナビゲーションバーの高さ調整 */
+.navbar {
+    height: 66px;
+}
+
+/* アバターのスタイリング */
+.navbar-text img {
+    width: 50px; /* アバターの幅を40pxに設定 */
+    height: 50px; /* アバターの高さを40pxに設定 */
+    border: 2px solid #fff; /* 白い枠線を追加 */
+    margin-right: 10px; /* アバターと名前の間のマージンを設定 */
+}
+

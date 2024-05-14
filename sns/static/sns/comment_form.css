@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+.fixed-image{
+    display: none;
+}
+
+.form-row {
+    display: flex; /* Flexboxコンテナを有効にします */
+    align-items: center; /* 縦方向の中央揃えをします */
+    justify-content: start; /* 横方向の配置をスタート位置にします */
+}
+
+.w-80{
+    width: 83%;
+}
+
+.w-15{
+    width: 13%;
+}
+
+.h-10{
+    height: 130px;
+}

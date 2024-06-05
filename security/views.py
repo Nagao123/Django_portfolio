@@ -13,7 +13,7 @@ def user_login(request):
             login(request,user)
             return redirect('sns:index')
         else:
-            return render(request,'security/login.html',{'error':'無効なログインです'})
+            return render(request,'security/login.html',{'error':'無効です。'})
     else:
         # GET リクエスト時の処理
         return render(request, 'security/login.html',{'error':''})
